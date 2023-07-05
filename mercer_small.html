@@ -1,0 +1,117 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>{% extends "label/label_base.html" %}
+
+{% load barcode %}
+
+{% block style %}
+
+html {
+	width: 62mm;
+	height: 33mm;
+}
+
+.margin {
+	position: fixed;
+	left: 2mm;
+	top: 2mm;
+	width: 58mm;
+	height: 27mm;
+	border: 2px black;
+}
+
+.header {
+	font-size: 4mm;
+	background-color: #FF0000;
+	color: #FFFFFF;
+	position: fixed;
+	left: 0mm;
+	top: 0mm;
+	width: 62mm;
+	height: 8mm;
+	border-radius: 0mm 0mm 1mm 1mm;
+}
+
+.mercer {
+	position: fixed;
+	left: 3mm;
+	top: 3mm;
+}
+
+.location {
+	position: fixed;
+	right: 3mm;
+	top: 3mm;
+}
+
+.model {
+	font-size: 3mm;
+	position: fixed;
+	left: 2mm;
+	top: 9mm;
+	width: 43mm;
+	text-overflow: ellipsis;
+}
+
+.serial {
+	font-size: 3mm;
+	position: fixed;
+	left: 2mm;
+	top: 17mm;
+	width: 43mm;
+	text-overflow: ellipsis;
+}
+
+.qr-code {
+	position: fixed;
+	right: 2mm;
+	top: 9mm;
+
+	width: 15mm;
+	height: 15mm;
+}
+
+.footer {
+	font-size: 2mm;
+	font-style: italic;
+	text-align: center;
+	position: fixed;
+	left: 2mm;
+	bottom: 2mm;
+	width: 58mm;
+}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="margin"></div>
+
+<div class="header">
+	<div class="mercer">
+		<b>Mercer XLab</b>
+	</div>
+
+	<div class="location-text">
+		<b>JEC 6204</b>
+	</div>
+</div>
+
+<div class="model">
+	<b>Model: <br>
+	&ensp;{{part.name}}</b> <br>
+</div>
+
+<br>
+
+<div class="serial">
+	<b>S/N: <br>
+	&ensp;{{item.serial}}</b>
+</div>
+
+<img class="qr-code" src="{% qrcode qr_data %}"></img>
+
+<div class="footer">
+	<em>Electrical, Computer, and Systems Engineering Dept. <br> Rensselaer Polytechnic Institute</em>
+</div>
+
+{% endblock %}
+</body></html>
